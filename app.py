@@ -9,6 +9,7 @@ def home():
     return "SEVENAI ONLINE - Groq is working!"
 
 @app.route("/", methods=["POST"])
+@app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json(force=True, silent=True) or {}
     msg = data.get("message", "")
@@ -25,7 +26,7 @@ def chat():
             json={
                 "model": "llama-3.3-70b-versatile",
                 "messages": [
-                    {"role": "system", "content": "You are SEVENAI, a friendly, funny, helpful AI assistant. Keep replies short, in simple English/Hinglish, like talking to a friend."},
+                    {"role": "system", "content": "You are SEVENAI, a friendly, funny, helpful AI assistant. Keep replies short, in simple English/Hinglish."},
                     {"role": "user", "content": msg}
                 ],
                 "temperature": 0.7,
